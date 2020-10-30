@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <Slider :value="r" @rgb="changeColor"/>
-    <Slider :value="g" @rgb="changeColor"/>
-    <Slider :value="b" @rgb="changeColor"/>
+    <Slider :value="rgb.r" @rgb="changeColor"/>
+    <Slider :value="rgb.g" @rgb="changeColor"/>
+    <Slider :value="rgb.b" @rgb="changeColor"/>
 
-    <p>R: {{r}}</p>
-    <p>G: {{g}}</p>
-    <p>B: {{b}}</p>
+    <p>R: {{rgb.r}}</p>
+    <p>G: {{rgb.g}}</p>
+    <p>B: {{rgb.b}}</p>
   </div>
 </template>
 
@@ -19,13 +19,15 @@ export default {
     Slider
   },
   data: () => ({
-    r: 125,
-    g: 0,
-    b: 255
+    rgb: {
+      r: 0,
+      g: 123,
+      b: 255
+    }
   }),
   methods: {
-    changeColor: (color) => {
-      this.r = color;
+    changeColor: function(color, position) {
+      this.rgb[position] = color
     }
   }
 }
