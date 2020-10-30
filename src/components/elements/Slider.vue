@@ -28,7 +28,4 @@ export default {
 </script>
 
 <style scoped>
-    .slider {
-        
-    }
 </style>
