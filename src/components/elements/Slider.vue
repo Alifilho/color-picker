@@ -1,6 +1,6 @@
 <template>
     <div class="slider">
-        <input type="range" min="0" max="255" :value="value" @input="$emit('rgb', $event.target.value)">
+        <input type="range" min="0" max="255" :value="value[1]" @input="$emit('rgb', Number($event.target.value), value[0])">
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
     name: 'Slider',
     props: {
-        value: Number,
+        value: Array,
     }
 }
 </script>

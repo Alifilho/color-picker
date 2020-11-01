@@ -1,33 +1,42 @@
 <template>
   <div class="home">
-    <Slider :value="rgb.r" @rgb="changeColor"/>
-    <Slider :value="rgb.g" @rgb="changeColor"/>
-    <Slider :value="rgb.b" @rgb="changeColor"/>
+    <ColorDisplay :rgba="rgba"/>
 
-    <p>R: {{rgb.r}}</p>
-    <p>G: {{rgb.g}}</p>
-    <p>B: {{rgb.b}}</p>
+    <Slider :value="rgba.r" @rgb="changeColor"/>
+    <Slider :value="rgba.g" @rgb="changeColor"/>
+    <Slider :value="rgba.b" @rgb="changeColor"/>
+    <Slider :value="rgba.a" @rgb="changeColor" />
+
+    <p>R: {{rgba.r[1]}}</p>
+    <p>G: {{rgba.g[1]}}</p>
+    <p>B: {{rgba.b[1]}}</p>
+    <p>A: {{rgba.a[1]}}</p>
   </div>
 </template>
 
 <script>
 import Slider from '../components/elements/Slider'
+import ColorDisplay from '../components/elements/ColorDisplay'
 
 export default {
   name: 'Home',
   components: {
-    Slider
+    Slider,
+    ColorDisplay
   },
-  data: () => ({
-    rgb: {
-      r: 0,
-      g: 123,
-      b: 255
+  data: function() {
+    return {
+      rgba: {
+      r: ['r', 0],
+      g: ['g', 123],
+      b: ['b', 255],
+      a: ['a', 0]
+      }
     }
-  }),
+  },
   methods: {
     changeColor: function(color, position) {
-      this.rgb[position] = color
+      this.$set(this.rgba[position], 1, color)
     }
   }
 }
